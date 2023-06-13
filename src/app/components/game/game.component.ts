@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 import { HiraganaLetter } from 'src/app/models/hiragana.model';
 import { HiraganaService } from 'src/app/services/hiragana.service';
 
@@ -11,7 +11,7 @@ import { HiraganaService } from 'src/app/services/hiragana.service';
 })
 export class GameComponent {
 
-  hiraganaLetterSubject = new Subject<HiraganaLetter>();
+  hiraganaLetterSubject = new ReplaySubject<HiraganaLetter>();
 
   constructor(private hiraganaService: HiraganaService) { 
     this.nextLetter();
