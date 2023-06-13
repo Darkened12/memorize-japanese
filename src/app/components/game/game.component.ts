@@ -13,5 +13,11 @@ export class GameComponent {
 
   hiraganaLetterSubject = new Subject<HiraganaLetter>();
 
-  constructor(private hiraganaService: HiraganaService) { }
+  constructor(private hiraganaService: HiraganaService) { 
+    this.nextLetter();
+  }
+  
+  nextLetter() {
+    this.hiraganaLetterSubject.next(this.hiraganaService.getRandomCharacter());
+  }
 }
