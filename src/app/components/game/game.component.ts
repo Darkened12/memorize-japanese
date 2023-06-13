@@ -12,7 +12,6 @@ import { HiraganaService } from 'src/app/services/hiragana.service';
 export class GameComponent {
 
   hiraganaLetterSubject = new ReplaySubject<HiraganaLetter>();
-  inputSubject = new Subject<string>();
 
   constructor(private hiraganaService: HiraganaService) { 
     this.nextLetter();
@@ -26,7 +25,4 @@ export class GameComponent {
     this.hiraganaLetterSubject.next(this.hiraganaService.getRandomCharacter());
   }
 
-  ngOnInit() {
-    this.inputSubject.subscribe(value => console.log(value));
-  }
 }
