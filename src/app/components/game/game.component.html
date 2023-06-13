@@ -1,2 +1,3 @@
 <app-screen [hiraganaLetter$]="hiraganaLetterSubject"></app-screen>
 <button (click)="nextLetter()">generate</button>
+<app-input (inputEmitter)="onInputUpdate($event)"></app-input>

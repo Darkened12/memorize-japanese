@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ReplaySubject } from 'rxjs';
+import { Subject, ReplaySubject } from 'rxjs';
 import { HiraganaLetter } from 'src/app/models/hiragana.model';
 import { HiraganaService } from 'src/app/services/hiragana.service';
 
@@ -12,12 +12,21 @@ import { HiraganaService } from 'src/app/services/hiragana.service';
 export class GameComponent {
 
   hiraganaLetterSubject = new ReplaySubject<HiraganaLetter>();
+  inputSubject = new Subject<string>();
 
   constructor(private hiraganaService: HiraganaService) { 
     this.nextLetter();
   }
+
+  onInputUpdate(event: string) {
+
+  }
   
   nextLetter() {
     this.hiraganaLetterSubject.next(this.hiraganaService.getRandomCharacter());
+  }
+
+  ngOnInit() {
+    this.inputSubject.subscribe(value => console.log(value));
   }
 }
