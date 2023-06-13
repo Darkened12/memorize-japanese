@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Subject, Observable } from 'rxjs';
+import { HiraganaLetter } from 'src/app/models/hiragana.model';
+import { HiraganaService } from 'src/app/services/hiragana.service';
+
 
 @Component({
   selector: 'app-game',
@@ -7,4 +11,7 @@ import { Component } from '@angular/core';
 })
 export class GameComponent {
 
+  hiraganaLetterSubject = new Subject<HiraganaLetter>();
+
+  constructor(private hiraganaService: HiraganaService) { }
 }

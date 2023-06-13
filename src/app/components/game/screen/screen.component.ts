@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HiraganaLetter } from 'src/app/models/hiragana.model';
 
 @Component({
   selector: 'app-screen',
@@ -6,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./screen.component.css']
 })
 export class ScreenComponent {
-
+  @Input() hiraganaLetter$!: Observable<HiraganaLetter>;
 }
