@@ -1,5 +1,5 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Subject, BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-input',
@@ -8,6 +8,7 @@ import { Subject } from 'rxjs';
 })
 export class InputComponent {
   inputData!: string;
+
   @Output() inputEmitter = new EventEmitter<string>();
 
 
@@ -15,4 +16,6 @@ export class InputComponent {
     this.inputEmitter.emit(this.inputData);
     this.inputData = '';
   }
+
+
 }
