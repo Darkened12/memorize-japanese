@@ -12,17 +12,22 @@ import { HiraganaService } from 'src/app/services/hiragana.service';
 export class GameComponent {
 
   hiraganaLetterSubject = new ReplaySubject<HiraganaLetter>(1);
-  successfulMatchSubject = new Subject<boolean>();
+  successfulMatchSubject = new ReplaySubject<boolean>(1);
 
   constructor(private hiraganaService: HiraganaService) { 
     this.nextLetter();
   }
 
   onInputUpdate(event: string) {
-    this.hiraganaLetterSubject.pipe(take(1)).subscribe(letter => {
-      this.successfulMatchSubject.next(event.toLowerCase() == letter.romanji)
-    });
-    this.nextLetter();
+    if (event !== '') {
+      this.hiraganaLetterSubject.pipe(take(1)).subscribe(letter => {
+        this.successfulMatchSubject.next(event.toLowerCase() == letter.romanji)
+      });
+    }
+    else {
+      this.nextLetter();
+    }
+
   }
   
   nextLetter() {

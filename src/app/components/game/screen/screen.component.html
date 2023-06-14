@@ -1,3 +1,8 @@
 <p>test {{ (hiraganaLetter$ | async)?.hiragana }}</p>
 <p>wins: {{ wins | async }}</p>
 <p>losses: {{ losses | async }}</p>
+
+<div *ngIf="MatchStatusToggleSubject | async">
+    <p *ngIf="(successfulMatchSubject | async)">Correct!</p>
+    <p *ngIf="!(successfulMatchSubject | async)">Wrong! It was "{{ (hiraganaLetter$ | async)?.romanji }}"</p>
+</div>
