@@ -7,13 +7,15 @@ import { GameComponent } from './components/game/game.component';
 import { ScreenComponent } from './components/game/screen/screen.component';
 import { InputComponent } from './components/game/input/input.component';
 import { FormsModule } from '@angular/forms';
+import { StartingMenuComponent } from './components/starting-menu/starting-menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GameComponent,
     ScreenComponent,
-    InputComponent
+    InputComponent,
+    StartingMenuComponent
   ],
   imports: [
     BrowserModule,
