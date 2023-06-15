@@ -1,8 +1,10 @@
-<p>test {{ (hiraganaLetter$ | async)?.hiragana }}</p>
+<p id="letter">{{ (hiraganaLetter$ | async)?.hiragana }}</p>
 <p>wins: {{ wins | async }}</p>
 <p>losses: {{ losses | async }}</p>
 
 <div *ngIf="MatchStatusToggleSubject | async">
-    <p *ngIf="(successfulMatchSubject | async)">Correct!</p>
-    <p *ngIf="!(successfulMatchSubject | async)">Wrong! It was "{{ (hiraganaLetter$ | async)?.romanji }}"</p>
+    <p *ngIf="(successfulMatchSubject | async)"><span style="color: green;">Correct!</span></p>
+    <p *ngIf="!(successfulMatchSubject | async)">
+        <span style="color: red;">Wrong!</span> It`s <b>"{{ (hiraganaLetter$ | async)?.romanji }}"</b>
+    </p>
 </div>

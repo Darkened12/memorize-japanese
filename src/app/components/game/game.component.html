@@ -1,2 +1,6 @@
-<app-screen [hiraganaLetter$]="hiraganaLetterSubject" [successfulMatchSubject]="successfulMatchSubject"></app-screen>
-<app-input (inputEmitter)="onInputUpdate($event)"></app-input>
+<div class="container">
+    <div class="centered-container">
+        <app-screen [hiraganaLetter$]="hiraganaLetterSubject" [successfulMatchSubject]="successfulMatchSubject"></app-screen>
+        <app-input (inputEmitter)="onInputUpdate($event)"></app-input>
+    </div>
+</div>
