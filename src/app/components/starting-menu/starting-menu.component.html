@@ -1,1 +1,17 @@
-<p>starting-menu works!</p>
+<div>
+    <label>
+      <input type="checkbox" [(ngModel)]="selectAllChecked" (change)="toggleSelectAll()">
+      Select all
+    </label>
+  </div>
+  
+  <div *ngFor="let checkbox of checkboxes">
+    <label [for]="checkbox.id">
+      <input type="checkbox" [(ngModel)]="checkbox.checked" [value]="checkbox.value" [id]="checkbox.id" (change)="updateSelectAllState()">
+      {{ checkbox.label }}
+    </label>
+  </div>
+  
+
+<button (click)="onSubmit()">Submit</button>
+  
