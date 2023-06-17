@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import hiragana, { HiraganaLetter } from 'src/app/models/hiragana.model';
 
 @Component({
@@ -10,7 +11,7 @@ export class StartingMenuComponent {
   checkboxes: { id: string, value: string, label: string, checked: boolean }[] = [];
   selectAllChecked: boolean = false;
 
-  constructor() {
+  constructor(private router: Router) {
     this.createCheckboxes();
   }
 
@@ -37,7 +38,11 @@ export class StartingMenuComponent {
   
 
   onSubmit() {
-    console.log(this.checkboxes);
+    const checkedLetters = this.checkboxes
+      .filter(checkbox => checkbox.checked)
+      .map(checkbox => checkbox.value);
+  
+    this.router.navigate(['/game'], { queryParams: { letters: checkedLetters } });
   }
   
 
