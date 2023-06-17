@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { Subject, ReplaySubject, take } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BehaviorSubject, ReplaySubject, take } from 'rxjs';
 import { HiraganaLetter } from 'src/app/models/hiragana.model';
-import { HiraganaService } from 'src/app/services/hiragana.service';
+import { AlphabetService } from 'src/app/services/alphabet.service';
+
 
 
 @Component({
@@ -10,12 +12,27 @@ import { HiraganaService } from 'src/app/services/hiragana.service';
   styleUrls: ['./game.component.css']
 })
 export class GameComponent {
-
+  hiraganaLettersSubject = new BehaviorSubject<HiraganaLetter[]>([]);
   hiraganaLetterSubject = new ReplaySubject<HiraganaLetter>(1);
   successfulMatchSubject = new ReplaySubject<boolean>(1);
 
-  constructor(private hiraganaService: HiraganaService) { 
-    this.nextLetter();
+  constructor(private alphabetService: AlphabetService, 
+              private activatedRoute: ActivatedRoute,
+              private router: Router) { }
+
+  ngOnInit() {
+    this.activatedRoute.queryParams.subscribe(params => {
+      const hiraganaLetters = this.alphabetService.getHiraganaLetters(params['letters']);
+      this.hiraganaLettersSubject.next(hiraganaLetters);
+      this.nextLetter();
+    });
+    if (this.hiraganaLettersSubject.getValue().length === 0) {
+      this.onBackButtonClick();
+    }
+  }
+
+  onBackButtonClick() {
+    this.router.navigate(['/'])
   }
 
   onInputUpdate(event: string) {
@@ -30,12 +47,16 @@ export class GameComponent {
 
   }
   
-  nextLetter() {
-    this.hiraganaLetterSubject.next(this.hiraganaService.getRandomCharacter());
+  getRandomLetter(): HiraganaLetter {
+    const hiraganaLetters = this.hiraganaLettersSubject.getValue();
+    const randomIndex = Math.floor(Math.random() * hiraganaLetters.length);
+    const desiredLetter = hiraganaLetters[randomIndex];
+    return desiredLetter;
   }
-
-  ngOnInit() {
-    this.successfulMatchSubject.subscribe(state => console.log(state));
+  
+  
+  nextLetter() {
+    this.hiraganaLetterSubject.next(this.getRandomLetter());
   }
 
 }
