@@ -1,5 +1,5 @@
 export interface JapaneseAlphabet {
-  hiragana: string;
+  letter: string;
   romanji: string;
   type: string;
 }
