@@ -74,4 +74,4 @@ const hiragana: HiraganaLetter[] = [
     { hiragana: "ぽ", romanji: "po", type: "p" },
   ];
   
-  export default hiragana;
+export default hiragana;
