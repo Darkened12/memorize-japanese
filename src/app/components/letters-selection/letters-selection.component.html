@@ -1,18 +1,19 @@
 <div>
-    <label>
-      <input type="checkbox" [(ngModel)]="selectAllChecked" (change)="toggleSelectAll()">
-      Select all
-    </label>
-  </div>
-  
-  <div *ngFor="let checkbox of checkboxes">
-    <label [for]="checkbox.id">
-      <input type="checkbox" [(ngModel)]="checkbox.checked" [value]="checkbox.value" [id]="checkbox.id" (change)="updateSelectAllState()">
-      {{ checkbox.label }}
-    </label>
-  </div>
-  
+  <div class="container">
+    <div class="checkboxes-container">
+      <label class="select-all-checkbox checkbox-container">
+        <input class="checkbox" type="checkbox" [(ngModel)]="selectAllChecked" (change)="toggleSelectAll()">
+        Select all
+      </label>
+      
+      <label class="checkbox-container" *ngFor="let checkbox of checkboxes" [for]="checkbox.id">
+        <input class="checkbox" type="checkbox" [(ngModel)]="checkbox.checked" [value]="checkbox.value" [id]="checkbox.id" (change)="updateSelectAllState()">
+        {{ checkbox.label }}
+      </label>  
+    </div>
 
-<button (click)="onBack()">Back</button>
-<button (click)="onSubmit()">Start</button>
+    <button (click)="onBack()">Back</button>
+    <button (click)="onSubmit()">Start</button>
+  </div>
+</div>
   
