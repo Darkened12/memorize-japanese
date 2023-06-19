@@ -22,17 +22,29 @@ export class GameComponent {
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
-      const japaneseLetters = this.alphabetService.getjapaneseLetters(params['letters']);
+      const alphabet: string | undefined = params['alphabet'];
+      const lettersToInclude: string[] | undefined = params['letters'];
+
+      if (alphabet === undefined) {
+        return this.router.navigate(['/']);
+      }
+
+      if (lettersToInclude === undefined) {
+        return this.onBackButtonClick();
+      }
+
+      if (lettersToInclude.length === 0) {
+        return this.onBackButtonClick();
+      }
+
+      const japaneseLetters = this.alphabetService.getjapaneseLetters(alphabet, params['letters']);
       this.japaneseLettersSubject.next(japaneseLetters);
       this.nextLetter();
     });
-    if (this.japaneseLettersSubject.getValue().length === 0) {
-      this.onBackButtonClick();
-    }
   }
 
   onBackButtonClick() {
-    this.router.navigate(['/'])
+    this.router.navigate(['/letters-selection']);
   }
 
   onInputUpdate(event: string) {
