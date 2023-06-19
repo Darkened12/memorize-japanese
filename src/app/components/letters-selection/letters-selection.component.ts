@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import hiragana, { HiraganaLetter } from 'src/app/models/japanese-alphabet.model';
+import hiragana, { JapaneseAlphabet } from 'src/app/models/japanese-alphabet.model';
 
 @Component({
   selector: 'app-letters-selection',
@@ -16,7 +16,7 @@ export class LettersSelectionComponent {
   }
 
   createCheckboxes() {
-    const uniqueLetters = Array.from(new Set(hiragana.map((letter: HiraganaLetter) => letter.type)));
+    const uniqueLetters = Array.from(new Set(hiragana.map((letter: JapaneseAlphabet) => letter.type)));
   
     this.checkboxes = uniqueLetters.map((letter: string) => {
       return {

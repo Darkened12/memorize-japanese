@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, ReplaySubject, take } from 'rxjs';
-import { HiraganaLetter } from 'src/app/models/japanese-alphabet.model';
+import { JapaneseAlphabet } from 'src/app/models/japanese-alphabet.model';
 import { AlphabetService } from 'src/app/services/alphabet.service';
 
 
@@ -12,8 +12,8 @@ import { AlphabetService } from 'src/app/services/alphabet.service';
   styleUrls: ['./game.component.css']
 })
 export class GameComponent {
-  hiraganaLettersSubject = new BehaviorSubject<HiraganaLetter[]>([]);
-  hiraganaLetterSubject = new ReplaySubject<HiraganaLetter>(1);
+  hiraganaLettersSubject = new BehaviorSubject<JapaneseAlphabet[]>([]);
+  hiraganaLetterSubject = new ReplaySubject<JapaneseAlphabet>(1);
   successfulMatchSubject = new ReplaySubject<boolean>(1);
 
   constructor(private alphabetService: AlphabetService, 
@@ -47,7 +47,7 @@ export class GameComponent {
 
   }
   
-  getRandomLetter(): HiraganaLetter {
+  getRandomLetter(): JapaneseAlphabet {
     const hiraganaLetters = this.hiraganaLettersSubject.getValue();
     const randomIndex = Math.floor(Math.random() * hiraganaLetters.length);
     const desiredLetter = hiraganaLetters[randomIndex];

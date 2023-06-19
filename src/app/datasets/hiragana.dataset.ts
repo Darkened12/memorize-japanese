@@ -1,6 +1,6 @@
-import { HiraganaLetter } from "../models/japanese-alphabet.model";
+import { JapaneseAlphabet } from "../models/japanese-alphabet.model";
 
-const hiragana: HiraganaLetter[] = [
+const hiragana: JapaneseAlphabet[] = [
     { hiragana: "あ", romanji: "a", type: "vowel" },
     { hiragana: "い", romanji: "i", type: "vowel" },
     { hiragana: "う", romanji: "u", type: "vowel" },
