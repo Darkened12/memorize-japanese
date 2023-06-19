@@ -11,7 +11,8 @@ import katakana from 'src/app/datasets/katakana.dataset';
   styleUrls: ['./letters-selection.component.css']
 })
 export class LettersSelectionComponent {
-  alphabet$ = new BehaviorSubject<JapaneseAlphabet[]>([]);
+  alphabetName = new BehaviorSubject<string>('');
+  alphabetLetters$ = new BehaviorSubject<JapaneseAlphabet[]>([]);
   checkboxes: { id: string, value: string, label: string, checked: boolean }[] = [];
   selectAllChecked: boolean = false;
 
@@ -20,13 +21,14 @@ export class LettersSelectionComponent {
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
       const alphabetName = params['alphabet'];
+      this.alphabetName.next(alphabetName);
       
       if (alphabetName === 'hiragana') {
-        this.alphabet$.next(hiragana);
+        this.alphabetLetters$.next(hiragana);
       }
 
       else if (alphabetName === 'katakana') {
-        this.alphabet$.next(katakana);
+        this.alphabetLetters$.next(katakana);
       }
       
       else { 
@@ -39,7 +41,7 @@ export class LettersSelectionComponent {
   
 
   createCheckboxes() {
-    const uniqueLetters = Array.from(new Set(this.alphabet$.getValue().map((letter: JapaneseAlphabet) => letter.type)));
+    const uniqueLetters = Array.from(new Set(this.alphabetLetters$.getValue().map((letter: JapaneseAlphabet) => letter.type)));
   
     this.checkboxes = uniqueLetters.map((letter: string) => {
       return {
@@ -68,11 +70,9 @@ export class LettersSelectionComponent {
       .filter(checkbox => checkbox.checked)
       .map(checkbox => checkbox.value);
   
-    this.activatedRoute.queryParams.subscribe(params => {
-      this.router.navigate(
-          ['/game'], { queryParams: { alphabet: params['alphabet'], letters: checkedLetters } }
-        );
-    })
+    this.router.navigate(
+      ['/game'], { queryParams: { alphabet: this.alphabetName.getValue(), letters: checkedLetters } }
+    );
   }
   
 

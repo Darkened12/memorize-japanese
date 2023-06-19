@@ -1,5 +1,7 @@
 <div>
   <div class="container">
+    <h3>Alphabet: <span class="span">{{ alphabetName | async }}</span> </h3>
+
     <div class="checkboxes-container">
       <label class="select-all-checkbox checkbox-container">
         <input class="checkbox" type="checkbox" [(ngModel)]="selectAllChecked" (change)="toggleSelectAll()">
@@ -12,8 +14,11 @@
       </label>  
     </div>
 
-    <button (click)="onBack()">Back</button>
-    <button (click)="onSubmit()">Start</button>
+    <div class="buttons-container">
+      <button class="button back-button" (click)="onBack()">Back</button>
+      <button class="button confirm-button" (click)="onSubmit()">Start</button>
+    </div>
+
   </div>
 </div>
   

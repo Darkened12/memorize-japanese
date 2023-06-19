@@ -11,15 +11,14 @@
     flex-direction: column;
 }
 
+.buttons-container {
+    padding-top: 25px;
+}
+
 .select-all-checkbox {
     margin-left: -20px;
 }
 
 .checkbox-container {
     padding: 3px;
-}
-
-.checkbox {
-    height: 20px;
-    width: 20px;   
 }
