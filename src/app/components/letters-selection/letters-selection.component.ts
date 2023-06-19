@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import hiragana, { JapaneseAlphabet } from 'src/app/models/japanese-alphabet.model';
+import { JapaneseAlphabet } from 'src/app/models/japanese-alphabet.model';
+import hiragana from 'src/app/datasets/hiragana.dataset';
 
 @Component({
   selector: 'app-letters-selection',
