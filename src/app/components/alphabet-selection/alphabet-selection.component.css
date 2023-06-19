@@ -1,0 +1,36 @@
+.container {
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.alphabet-letters {
+    transition: 0.2s;
+}
+
+.alphabet-letters:hover {
+    transform: scale(1.5);
+}
+
+.alphabet-buttom {
+    height: 200px;
+    width: 300px;
+
+    background-color: black;
+    color: white;
+
+    border: 2px;
+    border-color: solid white;
+
+}
+
+.alphabet-buttom:hover {
+
+    cursor: pointer;
+}
+
+
+   

@@ -1,2 +1,22 @@
-<button (click)="navigateToLettersSelection('hiragana')">Hiragana</button>
-<button (click)="navigateToLettersSelection('katakana')">Katakana</button>
+<div>
+    <div class="container">
+        <div>
+            <button class="alphabet-buttom" (click)="navigateToLettersSelection('hiragana')">
+                <div class="alphabet-letters">
+                    <h1>ひらがな</h1>
+                    <h5>Hiragana</h5>
+                </div>
+            </button>
+        </div>
+        
+        <div>
+            <button class="alphabet-buttom" (click)="navigateToLettersSelection('katakana')">
+                <div class="alphabet-letters">
+                    <h1>カタカナ</h1>
+                    <h5>Katakana</h5>
+                </div>
+            </button>
+        </div>
+    </div>
+</div>
+
