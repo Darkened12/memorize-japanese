@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import hiragana, { HiraganaLetter } from '../models/hiragana.model';
+import hiragana, { HiraganaLetter } from '../models/japanese-alphabet.model';
 
 @Injectable({
   providedIn: 'root'

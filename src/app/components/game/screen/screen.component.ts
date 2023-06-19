@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { BehaviorSubject, Observable, ReplaySubject, merge } from 'rxjs';
-import { HiraganaLetter } from 'src/app/models/hiragana.model';
+import { HiraganaLetter } from 'src/app/models/japanese-alphabet.model';
 
 @Component({
   selector: 'app-screen',

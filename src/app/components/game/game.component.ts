@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, ReplaySubject, take } from 'rxjs';
-import { HiraganaLetter } from 'src/app/models/hiragana.model';
+import { HiraganaLetter } from 'src/app/models/japanese-alphabet.model';
 import { AlphabetService } from 'src/app/services/alphabet.service';
 
 
