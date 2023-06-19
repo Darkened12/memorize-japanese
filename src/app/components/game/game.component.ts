@@ -12,8 +12,8 @@ import { AlphabetService } from 'src/app/services/alphabet.service';
   styleUrls: ['./game.component.css']
 })
 export class GameComponent {
-  hiraganaLettersSubject = new BehaviorSubject<JapaneseAlphabet[]>([]);
-  hiraganaLetterSubject = new ReplaySubject<JapaneseAlphabet>(1);
+  japaneseLettersSubject = new BehaviorSubject<JapaneseAlphabet[]>([]);
+  japaneseLetterSubject = new ReplaySubject<JapaneseAlphabet>(1);
   successfulMatchSubject = new ReplaySubject<boolean>(1);
 
   constructor(private alphabetService: AlphabetService, 
@@ -22,11 +22,11 @@ export class GameComponent {
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
-      const hiraganaLetters = this.alphabetService.getHiraganaLetters(params['letters']);
-      this.hiraganaLettersSubject.next(hiraganaLetters);
+      const japaneseLetters = this.alphabetService.getjapaneseLetters(params['letters']);
+      this.japaneseLettersSubject.next(japaneseLetters);
       this.nextLetter();
     });
-    if (this.hiraganaLettersSubject.getValue().length === 0) {
+    if (this.japaneseLettersSubject.getValue().length === 0) {
       this.onBackButtonClick();
     }
   }
@@ -37,7 +37,7 @@ export class GameComponent {
 
   onInputUpdate(event: string) {
     if (event !== '') {
-      this.hiraganaLetterSubject.pipe(take(1)).subscribe(letter => {
+      this.japaneseLetterSubject.pipe(take(1)).subscribe(letter => {
         this.successfulMatchSubject.next(event.toLowerCase() == letter.romanji)
       });
     }
@@ -48,15 +48,15 @@ export class GameComponent {
   }
   
   getRandomLetter(): JapaneseAlphabet {
-    const hiraganaLetters = this.hiraganaLettersSubject.getValue();
-    const randomIndex = Math.floor(Math.random() * hiraganaLetters.length);
-    const desiredLetter = hiraganaLetters[randomIndex];
+    const japaneseLetters = this.japaneseLettersSubject.getValue();
+    const randomIndex = Math.floor(Math.random() * japaneseLetters.length);
+    const desiredLetter = japaneseLetters[randomIndex];
     return desiredLetter;
   }
   
   
   nextLetter() {
-    this.hiraganaLetterSubject.next(this.getRandomLetter());
+    this.japaneseLetterSubject.next(this.getRandomLetter());
   }
 
 }

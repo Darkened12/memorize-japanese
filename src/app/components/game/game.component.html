@@ -1,6 +1,6 @@
 <div class="container">
     <div class="centered-container">
-        <app-screen [hiraganaLetter$]="hiraganaLetterSubject" [successfulMatchSubject]="successfulMatchSubject"></app-screen>
+        <app-screen [japaneseLetter$]="japaneseLetterSubject" [successfulMatchSubject]="successfulMatchSubject"></app-screen>
         <app-input (inputEmitter)="onInputUpdate($event)"></app-input>
         <button (click)="onBackButtonClick()">Back</button>
     </div>

@@ -1,10 +1,10 @@
-<p id="letter">{{ (hiraganaLetter$ | async)?.letter }}</p>
+<p id="letter">{{ (japaneseLetter$ | async)?.letter }}</p>
 <p>wins: {{ wins | async }}</p>
 <p>losses: {{ losses | async }}</p>
 
 <div *ngIf="MatchStatusToggleSubject | async">
     <p *ngIf="(successfulMatchSubject | async)"><span style="color: green;">Correct!</span></p>
     <p *ngIf="!(successfulMatchSubject | async)">
-        <span style="color: red;">Wrong!</span> It`s <b>"{{ (hiraganaLetter$ | async)?.romanji }}"</b>
+        <span style="color: red;">Wrong!</span> It`s <b>"{{ (japaneseLetter$ | async)?.romanji }}"</b>
     </p>
 </div>

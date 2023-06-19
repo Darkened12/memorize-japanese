@@ -6,12 +6,12 @@ import hiragana from '../datasets/hiragana.dataset';
   providedIn: 'root'
 })
 export class AlphabetService {
-  hiraganaLetters: JapaneseAlphabet[] = hiragana;
+  japaneseLetters: JapaneseAlphabet[] = hiragana;
 
   constructor() { }
 
-  getHiraganaLetters(lettersToInclude: string[]): JapaneseAlphabet[] {
-    return this.hiraganaLetters.filter(letter => lettersToInclude.includes(letter.type));
+  getjapaneseLetters(lettersToInclude: string[]): JapaneseAlphabet[] {
+    return this.japaneseLetters.filter(letter => lettersToInclude.includes(letter.type));
   }
   
 

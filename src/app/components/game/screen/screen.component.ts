@@ -14,10 +14,10 @@ export class ScreenComponent {
   MatchStatusToggleSubject = new BehaviorSubject<boolean>(false);
 
   @Input() successfulMatchSubject!: ReplaySubject<boolean>;
-  @Input() hiraganaLetter$!: Observable<JapaneseAlphabet>;
+  @Input() japaneseLetter$!: Observable<JapaneseAlphabet>;
 
   private _matchStatusToggleHandler() {
-    merge(this.successfulMatchSubject, this.hiraganaLetter$).subscribe(value => {
+    merge(this.successfulMatchSubject, this.japaneseLetter$).subscribe(value => {
       if (typeof value === 'boolean') {
         this.MatchStatusToggleSubject.next(true);
       }
