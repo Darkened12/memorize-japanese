@@ -10,7 +10,7 @@ export class AlphabetService {
   constructor() { }
 
   getHiraganaLetters(lettersToInclude: string[]): HiraganaLetter[] {
-    return this.hiraganaLetters.filter(letter => lettersToInclude.includes(letter.letter));
+    return this.hiraganaLetters.filter(letter => lettersToInclude.includes(letter.type));
   }
   
 

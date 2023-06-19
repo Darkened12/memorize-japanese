@@ -16,7 +16,7 @@ export class LettersSelectionComponent {
   }
 
   createCheckboxes() {
-    const uniqueLetters = Array.from(new Set(hiragana.map((letter: HiraganaLetter) => letter.letter)));
+    const uniqueLetters = Array.from(new Set(hiragana.map((letter: HiraganaLetter) => letter.type)));
   
     this.checkboxes = uniqueLetters.map((letter: string) => {
       return {
