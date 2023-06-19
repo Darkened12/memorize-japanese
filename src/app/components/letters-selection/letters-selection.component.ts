@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import hiragana, { HiraganaLetter } from 'src/app/models/hiragana.model';
 
 @Component({
-  selector: 'app-starting-menu',
-  templateUrl: './starting-menu.component.html',
-  styleUrls: ['./starting-menu.component.css']
+  selector: 'app-letters-selection',
+  templateUrl: './letters-selection.component.html',
+  styleUrls: ['./letters-selection.component.css']
 })
-export class StartingMenuComponent {
+export class LettersSelectionComponent {
   checkboxes: { id: string, value: string, label: string, checked: boolean }[] = [];
   selectAllChecked: boolean = false;
 

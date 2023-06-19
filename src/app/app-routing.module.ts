@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
 import { GameComponent } from './components/game/game.component';
-import { StartingMenuComponent } from './components/starting-menu/starting-menu.component';
+import { LettersSelectionComponent } from './components/letters-selection/letters-selection.component';
 
 const routes: Routes = [
-  {path: '', component: StartingMenuComponent},
+  {path: '', component: LettersSelectionComponent},
   {path: 'game', component: GameComponent}
 ];
 
