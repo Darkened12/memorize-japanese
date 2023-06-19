@@ -59,6 +59,9 @@ export class LettersSelectionComponent {
     this.selectAllChecked = this.checkboxes.every((checkbox) => checkbox.checked);
   }
   
+  onBack() {
+    this.router.navigate(['/']);
+  }
 
   onSubmit() {
     const checkedLetters = this.checkboxes

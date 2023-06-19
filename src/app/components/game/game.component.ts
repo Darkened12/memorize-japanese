@@ -44,7 +44,10 @@ export class GameComponent {
   }
 
   onBackButtonClick() {
-    this.router.navigate(['/letters-selection']);
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.router.navigate(['/letters-selection'], { queryParams: params});
+    })
+ 
   }
 
   onInputUpdate(event: string) {
