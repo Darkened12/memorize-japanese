@@ -8,6 +8,7 @@ import { ScreenComponent } from './components/game/screen/screen.component';
 import { InputComponent } from './components/game/input/input.component';
 import { FormsModule } from '@angular/forms';
 import { LettersSelectionComponent } from './components/letters-selection/letters-selection.component';
+import { AlphabetSelectionComponent } from './components/alphabet-selection/alphabet-selection.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { LettersSelectionComponent } from './components/letters-selection/letter
     GameComponent,
     ScreenComponent,
     InputComponent,
-    LettersSelectionComponent
+    LettersSelectionComponent,
+    AlphabetSelectionComponent
   ],
   imports: [
     BrowserModule,
