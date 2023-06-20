@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.japaneselearning.app',
-  appName: 'japanese-learning',
+  appId: 'com.memorizejapanese.app',
+  appName: 'Hira/Kata Memorization',
   webDir: 'dist/japanese-learning',
   server: {
     androidScheme: 'https'

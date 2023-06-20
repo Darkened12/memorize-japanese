@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">japanese-learning</string>
-    <string name="title_activity_main">japanese-learning</string>
+    <string name="app_name">Hira/Kata Memorization</string>
+    <string name="title_activity_main">Hira/Kata Memorization</string>
     <string name="package_name">com.japaneselearning.app</string>
     <string name="custom_url_scheme">com.japaneselearning.app</string>
 </resources>
