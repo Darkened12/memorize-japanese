@@ -6,7 +6,11 @@ const config: CapacitorConfig = {
   webDir: 'dist/japanese-learning',
   server: {
     androidScheme: 'https'
+  },
+  android: {
+    backgroundColor: '#000000'
   }
 };
 
 export default config;
+
