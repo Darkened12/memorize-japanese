@@ -20,6 +20,17 @@
     padding: 10px;
 }
 
+.score-item {
+    padding-bottom: 7px;
+}
+
+@media (max-width: 768px) {
+    .score-item {
+        padding-bottom: 12px;
+    }
+  }
+  
+
 #letter {
     height: 30px;
     font-size: 100px;

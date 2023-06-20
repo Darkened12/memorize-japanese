@@ -32,5 +32,12 @@
     cursor: pointer;
 }
 
+@media (max-width: 768px) {
+    .alphabet-buttom {
+        font-size: x-large;
+        margin: 30px;
+    }
+  }
+  
 
    
