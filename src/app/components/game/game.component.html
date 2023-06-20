@@ -1,7 +1,7 @@
-<div class="container">
+<div>
     <div class="centered-container">
         <app-screen [japaneseLetter$]="japaneseLetterSubject" [successfulMatchSubject]="successfulMatchSubject"></app-screen>
         <app-input (inputEmitter)="onInputUpdate($event)"></app-input>
-        <button (click)="onBackButtonClick()">Back</button>
+        <button class="button confirm-button" (click)="onBackButtonClick()">Back</button>
     </div>
 </div>
