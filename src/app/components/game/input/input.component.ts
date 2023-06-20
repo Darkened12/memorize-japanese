@@ -1,5 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Subject, BehaviorSubject } from 'rxjs';
+import { Component, Output, EventEmitter, ElementRef, Renderer2, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-input',
@@ -9,6 +8,9 @@ import { Subject, BehaviorSubject } from 'rxjs';
 export class InputComponent {
   inputData!: string;
 
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
+
+
   @Output() inputEmitter = new EventEmitter<string>();
 
 
@@ -16,6 +18,12 @@ export class InputComponent {
     this.inputEmitter.emit(this.inputData);
     this.inputData = '';
   }
+
+  ngAfterViewInit() {
+    const inputElement = this.elementRef.nativeElement.querySelector('#main-input');
+    this.renderer.selectRootElement(inputElement).focus();
+  }
+  
 
 
 }
