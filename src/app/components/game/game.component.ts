@@ -47,7 +47,7 @@ export class GameComponent {
     const currentAlphabet = this.weightedAlphabetSubject.getValue();
     const refactoredAlphabet = currentAlphabet.map(letter => {
       if (targetLetter === letter) {
-        if (increment) { letter.weight += 1; }
+        if (increment) { letter.weight += 2; }
         else { letter.weight -= 1; }
         
         return letter
@@ -68,11 +68,11 @@ export class GameComponent {
     if (event !== '') {
       this.japaneseLetterSubject.pipe(take(1)).subscribe(letter => {
         if (event.toLowerCase() == letter.romanji) {
-          this.successfulMatchSubject.next(true);
           this.updateWeight(letter, true);
+          this.successfulMatchSubject.next(true);
         } else {
-          this.successfulMatchSubject.next(false);
           this.updateWeight(letter, false);
+          this.successfulMatchSubject.next(false);
         }
       }).unsubscribe();
     }
@@ -81,11 +81,20 @@ export class GameComponent {
     }
 
   }
+
+  getLettersWithLowestWeight(letters: WeightedJapaneseLetter[]): WeightedJapaneseLetter[] {
+    const minWeight = Math.min(...letters.map(letter => letter.weight));
+    const lettersWithLowestWeight = letters.filter(letter => letter.weight === minWeight);
+    console.log(lettersWithLowestWeight);
+    return lettersWithLowestWeight;
+  }
+  
   
   getRandomLetter(): WeightedJapaneseLetter {
     const japaneseLetters = this.weightedAlphabetSubject.getValue();
-    const randomIndex = Math.floor(Math.random() * japaneseLetters.length);
-    const desiredLetter = japaneseLetters[randomIndex];
+    const lettersWithLowestWeight = this.getLettersWithLowestWeight(japaneseLetters);
+    const randomIndex = Math.floor(Math.random() * lettersWithLowestWeight.length);
+    const desiredLetter = lettersWithLowestWeight[randomIndex];
     return desiredLetter;
   }
   
