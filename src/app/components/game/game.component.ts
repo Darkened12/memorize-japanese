@@ -43,6 +43,20 @@ export class GameComponent {
     });
   }
 
+  updateWeight(targetLetter: WeightedJapaneseLetter, increment: boolean) {
+    const currentAlphabet = this.weightedAlphabetSubject.getValue();
+    const refactoredAlphabet = currentAlphabet.map(letter => {
+      if (targetLetter === letter) {
+        if (increment) { letter.weight += 1; }
+        else { letter.weight -= 1; }
+        
+        return letter
+      }
+      return letter;
+    })
+    this.weightedAlphabetSubject.next(refactoredAlphabet);
+  }
+
   onBackButtonClick() {
     this.activatedRoute.queryParams.subscribe(params => {
       this.router.navigate(['/letters-selection'], { queryParams: params});
@@ -53,8 +67,14 @@ export class GameComponent {
   onInputUpdate(event: string) {
     if (event !== '') {
       this.japaneseLetterSubject.pipe(take(1)).subscribe(letter => {
-        this.successfulMatchSubject.next(event.toLowerCase() == letter.romanji)
-      });
+        if (event.toLowerCase() == letter.romanji) {
+          this.successfulMatchSubject.next(true);
+          this.updateWeight(letter, true);
+        } else {
+          this.successfulMatchSubject.next(false);
+          this.updateWeight(letter, false);
+        }
+      }).unsubscribe();
     }
     else {
       this.nextLetter();
