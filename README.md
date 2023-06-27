@@ -1,27 +1,17 @@
-# JapaneseLearning
+# Hiragana/Katakana Memorization
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.0.
+I'm learning Japanese and I couldn't find a free app that fits my needs while also being ad-free. So I've made this one, you may use it on its live version [here](https://memorize-japanese.fly.dev/) or download the Android app on [releases](https://github.com/Darkened12/memorize-japanese/releases).
 
-## Development server
+## How to install and run it
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+After cloning the repo, install [Node.js](https://nodejs.org/en) and the [Angular CLI](https://github.com/angular/angular-cli). On the app's root folder, run `npm install` and `npm audit fix`. 
+To run it locally on your browser, run the command `ng serve --open`.
 
-## Code scaffolding
+## How to build the Android app
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+You will need to install [Android Studio](https://developer.android.com/studio). On the app's root folder, run `ng build --configuration production` and `npx cap sync`.
+Run `npx cap open android` and the project will be opened on Android Studio, ready to be built.
 
-## Build
+## License
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+This project is licensed under the MIT License - see the LICENSE.md file for details
