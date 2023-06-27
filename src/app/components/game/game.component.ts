@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, ReplaySubject, take } from 'rxjs';
-import { JapaneseLetter } from 'src/app/models/japanese-alphabet.model';
+import { JapaneseLetter, WeightedJapaneseLetter } from 'src/app/models/japanese-alphabet.model';
 import { AlphabetService } from 'src/app/services/alphabet.service';
 
 
@@ -12,8 +12,8 @@ import { AlphabetService } from 'src/app/services/alphabet.service';
   styleUrls: ['./game.component.css']
 })
 export class GameComponent {
-  japaneseLettersSubject = new BehaviorSubject<JapaneseLetter[]>([]);
-  japaneseLetterSubject = new ReplaySubject<JapaneseLetter>(1);
+  weightedAlphabetSubject = new BehaviorSubject<WeightedJapaneseLetter[]>([]);
+  japaneseLetterSubject = new ReplaySubject<WeightedJapaneseLetter>(1);
   successfulMatchSubject = new ReplaySubject<boolean>(1);
 
   constructor(private alphabetService: AlphabetService, 
@@ -37,8 +37,8 @@ export class GameComponent {
         return this.onBackButtonClick();
       }
 
-      const japaneseLetters = this.alphabetService.getjapaneseLetters(alphabet, params['letters']);
-      this.japaneseLettersSubject.next(japaneseLetters);
+      const weightedAlphabet = this.alphabetService.getWeightedAlphabet(alphabet, params['letters']);
+      this.weightedAlphabetSubject.next(weightedAlphabet);
       this.nextLetter();
     });
   }
@@ -62,8 +62,8 @@ export class GameComponent {
 
   }
   
-  getRandomLetter(): JapaneseLetter {
-    const japaneseLetters = this.japaneseLettersSubject.getValue();
+  getRandomLetter(): WeightedJapaneseLetter {
+    const japaneseLetters = this.weightedAlphabetSubject.getValue();
     const randomIndex = Math.floor(Math.random() * japaneseLetters.length);
     const desiredLetter = japaneseLetters[randomIndex];
     return desiredLetter;
