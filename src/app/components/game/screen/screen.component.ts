@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { BehaviorSubject, Observable, ReplaySubject, merge } from 'rxjs';
-import { JapaneseAlphabet } from 'src/app/models/japanese-alphabet.model';
+import { JapaneseLetter } from 'src/app/models/japanese-alphabet.model';
 
 @Component({
   selector: 'app-screen',
@@ -14,7 +14,7 @@ export class ScreenComponent {
   MatchStatusToggleSubject = new BehaviorSubject<boolean>(false);
 
   @Input() successfulMatchSubject!: ReplaySubject<boolean>;
-  @Input() japaneseLetter$!: Observable<JapaneseAlphabet>;
+  @Input() japaneseLetter$!: Observable<JapaneseLetter>;
 
   private _matchStatusToggleHandler() {
     merge(this.successfulMatchSubject, this.japaneseLetter$).subscribe(value => {

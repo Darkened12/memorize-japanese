@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { JapaneseAlphabet } from '../models/japanese-alphabet.model';
+import { JapaneseLetter } from '../models/japanese-alphabet.model';
 import hiragana from '../datasets/hiragana.dataset';
 import katakana from '../datasets/katakana.dataset';
 
@@ -8,8 +8,8 @@ import katakana from '../datasets/katakana.dataset';
 })
 export class AlphabetService {
 
-  getjapaneseLetters(alphabet: string, lettersToInclude: string[]): JapaneseAlphabet[] {
-    var desiredAlphabet: JapaneseAlphabet[];
+  getjapaneseLetters(alphabet: string, lettersToInclude: string[]): JapaneseLetter[] {
+    var desiredAlphabet: JapaneseLetter[];
 
     if (alphabet === 'hiragana') {
       desiredAlphabet = hiragana;

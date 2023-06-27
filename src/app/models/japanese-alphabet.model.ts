@@ -1,4 +1,4 @@
-export interface JapaneseAlphabet {
+export interface JapaneseLetter {
   letter: string;
   romanji: string;
   type: string;

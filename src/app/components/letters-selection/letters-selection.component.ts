@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { JapaneseAlphabet } from 'src/app/models/japanese-alphabet.model';
+import { JapaneseLetter } from 'src/app/models/japanese-alphabet.model';
 import hiragana from 'src/app/datasets/hiragana.dataset';
 import { BehaviorSubject } from 'rxjs';
 import katakana from 'src/app/datasets/katakana.dataset';
@@ -12,7 +12,7 @@ import katakana from 'src/app/datasets/katakana.dataset';
 })
 export class LettersSelectionComponent {
   alphabetName = new BehaviorSubject<string>('');
-  alphabetLetters$ = new BehaviorSubject<JapaneseAlphabet[]>([]);
+  alphabetLetters$ = new BehaviorSubject<JapaneseLetter[]>([]);
   checkboxes: { id: string, value: string, label: string, checked: boolean }[] = [];
   selectAllChecked: boolean = false;
 
@@ -41,7 +41,7 @@ export class LettersSelectionComponent {
   
 
   createCheckboxes() {
-    const uniqueLetters = Array.from(new Set(this.alphabetLetters$.getValue().map((letter: JapaneseAlphabet) => letter.type)));
+    const uniqueLetters = Array.from(new Set(this.alphabetLetters$.getValue().map((letter: JapaneseLetter) => letter.type)));
   
     this.checkboxes = uniqueLetters.map((letter: string) => {
       return {

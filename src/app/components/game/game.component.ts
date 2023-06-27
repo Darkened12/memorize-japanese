@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, ReplaySubject, take } from 'rxjs';
-import { JapaneseAlphabet } from 'src/app/models/japanese-alphabet.model';
+import { JapaneseLetter } from 'src/app/models/japanese-alphabet.model';
 import { AlphabetService } from 'src/app/services/alphabet.service';
 
 
@@ -12,8 +12,8 @@ import { AlphabetService } from 'src/app/services/alphabet.service';
   styleUrls: ['./game.component.css']
 })
 export class GameComponent {
-  japaneseLettersSubject = new BehaviorSubject<JapaneseAlphabet[]>([]);
-  japaneseLetterSubject = new ReplaySubject<JapaneseAlphabet>(1);
+  japaneseLettersSubject = new BehaviorSubject<JapaneseLetter[]>([]);
+  japaneseLetterSubject = new ReplaySubject<JapaneseLetter>(1);
   successfulMatchSubject = new ReplaySubject<boolean>(1);
 
   constructor(private alphabetService: AlphabetService, 
@@ -62,7 +62,7 @@ export class GameComponent {
 
   }
   
-  getRandomLetter(): JapaneseAlphabet {
+  getRandomLetter(): JapaneseLetter {
     const japaneseLetters = this.japaneseLettersSubject.getValue();
     const randomIndex = Math.floor(Math.random() * japaneseLetters.length);
     const desiredLetter = japaneseLetters[randomIndex];
