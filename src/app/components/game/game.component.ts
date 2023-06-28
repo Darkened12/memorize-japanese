@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, ReplaySubject, take } from 'rxjs';
 import { JapaneseLetter, WeightedJapaneseLetter } from 'src/app/models/japanese-alphabet.model';
 import { AlphabetService } from 'src/app/services/alphabet.service';
+import { UtilsService } from 'src/app/services/utils.service';
 
 
 
@@ -13,19 +14,27 @@ import { AlphabetService } from 'src/app/services/alphabet.service';
 })
 export class GameComponent {
   weightedAlphabetSubject = new BehaviorSubject<WeightedJapaneseLetter[]>([]);
+  lowestWeightLetters = new BehaviorSubject<WeightedJapaneseLetter[]>([]);
+  alphabetGeneratorObject = this._alphabetGenerator();
   japaneseLetterSubject = new ReplaySubject<WeightedJapaneseLetter>(1);
   successfulMatchSubject = new ReplaySubject<boolean>(1);
 
   constructor(private alphabetService: AlphabetService, 
               private activatedRoute: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private utils: UtilsService) { }
 
   ngOnInit() {
+    this.alphabetInitialization();
+    this.lowestWeightLetters.subscribe(value => console.log(value));
+  }
+
+  alphabetInitialization() {
     this.activatedRoute.queryParams.subscribe(params => {
-      const alphabet: string | undefined = params['alphabet'];
+      const alphabetName: string | undefined = params['alphabet'];
       const lettersToInclude: string[] | undefined = params['letters'];
 
-      if (alphabet === undefined) {
+      if (alphabetName === undefined) {
         return this.router.navigate(['/']);
       }
 
@@ -37,10 +46,20 @@ export class GameComponent {
         return this.onBackButtonClick();
       }
 
-      const weightedAlphabet = this.alphabetService.getWeightedAlphabet(alphabet, params['letters']);
-      this.weightedAlphabetSubject.next(weightedAlphabet);
-      this.nextLetter();
+      const weightedAlphabet = this.alphabetService.getWeightedAlphabet(alphabetName, lettersToInclude);
+      const shuffledAlphabet = this.utils.shuffleArray(weightedAlphabet);
+      this.weightedAlphabetSubject.next(shuffledAlphabet);
+
+      this.updateAlphabetGenerator();
     });
+    this.nextLetter();
+  }
+
+  updateLowestWeightLettersSubject() {
+    const currentAlphabetValue = this.weightedAlphabetSubject.getValue();
+    const newWeightedLetters = this.getLettersWithLowestWeight(currentAlphabetValue);
+    const shuffledNewLetters = this.utils.shuffleArray(newWeightedLetters);
+    this.lowestWeightLetters.next(shuffledNewLetters);
   }
 
   updateWeight(targetLetter: WeightedJapaneseLetter, increment: boolean) {
@@ -48,13 +67,17 @@ export class GameComponent {
     const refactoredAlphabet = currentAlphabet.map(letter => {
       if (targetLetter === letter) {
         if (increment) { letter.weight += 2; }
-        else { letter.weight -= 1; }
+        else { letter.weight += 1; }
         
         return letter
       }
       return letter;
     })
     this.weightedAlphabetSubject.next(refactoredAlphabet);
+  }
+
+  updateAlphabetGenerator() {
+    this.alphabetGeneratorObject = this._alphabetGenerator(); 
   }
 
   onBackButtonClick() {
@@ -85,22 +108,22 @@ export class GameComponent {
   getLettersWithLowestWeight(letters: WeightedJapaneseLetter[]): WeightedJapaneseLetter[] {
     const minWeight = Math.min(...letters.map(letter => letter.weight));
     const lettersWithLowestWeight = letters.filter(letter => letter.weight === minWeight);
-    console.log(lettersWithLowestWeight);
     return lettersWithLowestWeight;
   }
   
-  
-  getRandomLetter(): WeightedJapaneseLetter {
-    const japaneseLetters = this.weightedAlphabetSubject.getValue();
-    const lettersWithLowestWeight = this.getLettersWithLowestWeight(japaneseLetters);
-    const randomIndex = Math.floor(Math.random() * lettersWithLowestWeight.length);
-    const desiredLetter = lettersWithLowestWeight[randomIndex];
-    return desiredLetter;
+  private *_alphabetGenerator() {
+    this.updateLowestWeightLettersSubject()
+    const letters = this.lowestWeightLetters.getValue();
+    for (const letter of letters) {
+      yield this.japaneseLetterSubject.next(letter);
+    }
+    this.updateAlphabetGenerator();
+    this.nextLetter();
+    ;
   }
   
-  
   nextLetter() {
-    this.japaneseLetterSubject.next(this.getRandomLetter());
+    this.alphabetGeneratorObject.next();
   }
 
 }
