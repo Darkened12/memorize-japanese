@@ -26,7 +26,6 @@ export class GameComponent {
 
   ngOnInit() {
     this.alphabetInitialization();
-    this.lowestWeightLetters.subscribe(value => console.log(value));
   }
 
   alphabetInitialization() {
