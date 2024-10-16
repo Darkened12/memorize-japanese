@@ -1,5 +1,7 @@
 # Hiragana/Katakana Memorization
 
+<img src="https://i.imgur.com/Mso0pox.png" width="400"/> <img src="https://i.imgur.com/WgD5q9z.png" width="400"/>
+
 I'm learning Japanese and I couldn't find a free app that fits my needs while also being ad-free. So I've made this one, you may use it on its live version [here](https://memorize-japanese.fly.dev/) or download the Android app on [releases](https://github.com/Darkened12/memorize-japanese/releases).
 
 ## How to install and run it
